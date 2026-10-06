@@ -158,6 +158,22 @@ The prototype supports engineering validation of:
 
 ---
 
+## Demonstration Video
+
+The following video presents the integrated prototype, its principal mechanisms, and the overall operating process.
+
+<p align="center">
+  <a href="assets/videos/system-demonstration.mp4">
+    <img src="assets/images/prototype.png" width="760" alt="Watch the system demonstration video">
+  </a>
+</p>
+
+<p align="center">
+  <a href="assets/videos/system-demonstration.mp4"><strong>▶ Watch the system demonstration video</strong></a>
+</p>
+
+---
+
 ## Design Targets
 
 | Item | Design target |
