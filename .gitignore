@@ -1,0 +1,47 @@
+# This is a public portfolio repository. Keep engineering sources private.
+
+# MATLAB and source code
+*.m
+*.mlx
+*.py
+*.ipynb
+*.c
+*.cpp
+*.h
+*.hpp
+
+# CAD and manufacturing files
+*.SLDPRT
+*.SLDASM
+*.SLDDRW
+*.sldprt
+*.sldasm
+*.slddrw
+*.DWG
+*.dwg
+*.DXF
+*.dxf
+*.STEP
+*.step
+*.STP
+*.stp
+*.3DXML
+*.3dxml
+
+# Technical documents and archives
+*.pdf
+*.doc
+*.docx
+*.ppt
+*.pptx
+*.zip
+*.rar
+*.7z
+
+# Local and temporary files
+.DS_Store
+Thumbs.db
+~$*
+*.tmp
+*.bak
+
