@@ -6,7 +6,7 @@ An integrated mechanical system for the preliminary cleaning, portioning, and pa
 
 The project combines six coordinated modules—root trimming and dry cleaning, box separation, mechanical weighing, 90° indexing, box transfer, and final pressing—into a compact processing line intended for small-scale agricultural processing and engineering education.
 
-> **Repository status:** This repository is a public project portfolio and technical overview. Source code, MATLAB simulation files, CAD/SolidWorks models, manufacturing drawings, and complete design documentation are not currently public.
+> **Repository status:** The STM32 motor-control firmware is now public under [`firmware/stm32f407-controller/`](firmware/stm32f407-controller/). MATLAB simulations, CAD/SolidWorks models, manufacturing drawings, and complete design documentation are not currently public.
 
 ---
 
@@ -63,6 +63,70 @@ The machine coordinates two material flows:
 - Four-bar transfer mechanism designed around an approximately straight output segment
 - Standardized motors, gears, bearings, shafts, and aluminum profiles
 - Modular architecture for fabrication, assembly, testing, and maintenance
+- STM32F407-based coordinated control of six stepper channels, two continuous-rotation servos, two sensors, and two relay outputs
+- Public STM32CubeMX and Keil MDK firmware project
+
+---
+
+# Embedded Motor Control
+
+The integrated prototype is coordinated by an **STM32F407IGTx** controller. The competition firmware combines open-loop step/direction control, PWM servo control, proximity-sensor feedback, and relay-switched auxiliary actuators into a repeated processing sequence.
+
+<p align="center">
+  <strong>6 stepper channels · 2 PWM servo channels · 2 proximity sensors · 2 relay outputs</strong>
+</p>
+
+## Controller Architecture
+
+```text
+                         ┌── Step/Direction ──> Stepper Motors 1–6
+STM32F407 Controller ────┼── TIM4 PWM ───────> Continuous Servos 1–2
+                         ├── GPIO Inputs ─────> Proximity Sensors 1–2
+                         └── GPIO Outputs ────> Relay Channels 1–2
+```
+
+The stepper channels use a shared pulse-generation routine with independently configured pulse periods. A motor command specifies direction, angle, and microstep subdivision; the controller converts the requested angle into a pulse count using a 1.8° full-step angle and 1/8 microstepping.
+
+Two continuous-rotation servos are driven from TIM4 at 50 Hz. Their stop and direction commands use calibrated pulse widths around a 1.5 ms neutral point. Two active-low proximity inputs provide event-based progression at key stages, while two relay outputs switch auxiliary mechanisms.
+
+## Main Execution Sequence
+
+```text
+Initialize outputs and stop all actuators
+        ↓
+Run Stepper 5 in two indexed movements
+        ↓
+Move Servo 1 outward
+        ↓
+Enable Relay 1 and run Stepper 4 until Sensor 1 triggers
+        ↓
+Disable Relay 1 and enable Relay 2
+        ↓
+Run Stepper 6, Stepper 1, and Stepper 2 in sequence
+        ↓
+Wait for Sensor 2, then disable Relay 2
+        ↓
+Run Stepper 3 forward and backward
+        ↓
+Execute Servo 2 forward/return action
+        ↓
+Return Stepper 1 and Servo 1
+        ↓
+Stop auxiliary outputs and repeat after a delay
+```
+
+The exact motor-to-mechanism wiring labels were not preserved in the source archive, so the public documentation retains the tested channel names (`Motor 1`–`Motor 6`) instead of inventing subsystem assignments.
+
+## Firmware
+
+The complete source project is available at [`firmware/stm32f407-controller/`](firmware/stm32f407-controller/). It includes:
+
+- application and peripheral source under `Src/` and `Inc/`;
+- the STM32CubeMX configuration file `STEEP.ioc`;
+- the Keil MDK project and startup file;
+- the required STM32F4 HAL and CMSIS sources with their original license notices.
+
+See the [firmware documentation](firmware/stm32f407-controller/README.md) for the pin map, timing parameters, build instructions, control sequence, and prototype-safety limitations.
 
 ---
 
@@ -194,8 +258,7 @@ This public repository presents the system concept, mechanical architecture, rep
 
 The following materials remain private at this stage:
 
-- control and simulation source code;
-- MATLAB models and analysis scripts;
+- MATLAB mechanism-simulation source code;
 - SolidWorks assemblies and part files;
 - DWG, STEP, and manufacturing drawings;
 - detailed calculations and complete design documentation;
