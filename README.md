@@ -6,7 +6,7 @@ An integrated mechanical system for the preliminary cleaning, portioning, and pa
 
 The project combines six coordinated modules—root trimming and dry cleaning, box separation, mechanical weighing, 90° indexing, box transfer, and final pressing—into a compact processing line intended for small-scale agricultural processing and engineering education.
 
-> **Repository status:** The STM32 motor-control firmware is now public under [`firmware/stm32f407-controller/`](firmware/stm32f407-controller/). MATLAB simulations, CAD/SolidWorks models, manufacturing drawings, and complete design documentation are not currently public.
+> **Repository status:** The STM32 motor-control firmware is open source under the MIT License and available in [`firmware/stm32f407-controller/`](firmware/stm32f407-controller/). MATLAB simulations, CAD/SolidWorks models, manufacturing drawings, and complete design documentation are not currently public.
 
 ---
 
@@ -272,5 +272,5 @@ For academic discussion or collaboration, please contact the repository owner th
 
 Developed by a student engineering team at **Beijing University of Technology** with faculty supervision.
 
-This repository is intended as a project portfolio and technical overview. All rights are reserved unless otherwise stated.
+The firmware under [`firmware/`](firmware/) is released under the [MIT License](firmware/LICENSE). Project documentation, images, videos, and mechanical-design materials remain all rights reserved unless otherwise stated.
 
