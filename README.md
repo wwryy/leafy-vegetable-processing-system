@@ -199,7 +199,13 @@ Two transfer stages move the filled box through the weighing and indexing statio
 The final module synchronizes box movement and pressing through a cam-driven linkage. The mechanism coordinates the pressing stroke with conveyor motion while maintaining a compact layout.
 
 <p align="center">
-  <img src="assets/animations/box-pressing.gif" width="560" alt="Box pressing mechanism simulation">
+  <a href="assets/videos/box-pressing.mp4?raw=1">
+    <img src="assets/images/box-pressing-preview.png" width="760" alt="Preview of the box pressing mechanism simulation">
+  </a>
+</p>
+
+<p align="center">
+  <a href="assets/videos/box-pressing.mp4?raw=1"><strong>▶ Watch the box-pressing mechanism simulation (MP4)</strong></a>
 </p>
 
 ---
