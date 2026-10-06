@@ -200,7 +200,7 @@ The final module synchronizes box movement and pressing through a cam-driven lin
 
 <p align="center">
   <a href="assets/videos/box-pressing.mp4?raw=1">
-    <img src="assets/images/box-pressing-preview.png" width="760" alt="Preview of the box pressing mechanism simulation">
+    <img src="assets/animations/box-pressing.gif" width="760" alt="Animated box pressing mechanism simulation">
   </a>
 </p>
 
